@@ -1,0 +1,23 @@
+{
+  "name": "cracking-cplusplus",
+  "version": "1.0.0",
+  "description": "cracking-cplusplus-interview",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "child-process-promise": "^2.0.2",
+    "gulp": "^3.9.1",
+    "gulp-watch": "^4.3.6",
+    "md5": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cplusplus",
+    "build",
+    "ut"
+  ],
+  "author": "arthur",
+  "license": "MIT"
+}
