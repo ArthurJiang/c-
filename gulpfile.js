@@ -24,7 +24,7 @@ gulp.task('build', function () {
                         var newmd5 = md5(buf);
                         if (filemd5s[item] == undefined || filemd5s[item] != newmd5) {
                             filemd5s[item] = newmd5;
-                            var cppBuild = `clang++ ${paths.src}${item.split('.')[0]}.cpp -o ${paths.dest}${item.split('.cpp')[0]}`;
+                            var cppBuild = `clang++ -std=c++11 -stdlib=libc++ ${paths.src}${item.split('.')[0]}.cpp -o ${paths.dest}${item.split('.cpp')[0]}`;
                             pexec(cppBuild)
                                 .then(r => r.stdout)
                                 .then(() => {
