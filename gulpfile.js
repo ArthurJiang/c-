@@ -3,6 +3,7 @@ var pexec = require('child-process-promise').exec;
 var watch = require('gulp-watch');
 var fs = require('fs');
 var md5 = require('md5');
+var chalk = require('chalk');
 var cwd = process.cwd();
 
 var paths = {
@@ -14,7 +15,7 @@ var paths = {
 var filemd5s = [];
 gulp.task('build', function () {
     fs.readdir(paths.src, function (err, items) {
-        console.log(items);
+        console.log(chalk.magenta(items));
         items.forEach(function (item) {
             if (!item.includes('~')) {
                 fs.readFile(`${paths.src}${item}`, function (err, buf) {
@@ -29,7 +30,7 @@ gulp.task('build', function () {
                                 .then(r => r.stdout)
                                 .then(() => {
                                     var bashRun = `cd ${paths.dest} && ./${item.split('.cpp')[0]}`;
-                                    console.log(`[${item}]`.toUpperCase());
+                                    console.log(chalk.magenta(`[${item}]`.toUpperCase()));
                                     pexec(bashRun)
                                         .then(r => r.stdout)
                                         .then(console.log)
@@ -41,8 +42,8 @@ gulp.task('build', function () {
                                 .then(console.log)
                                 .catch(console.error);
                         } else {
-                            console.log(`[${item}]`.toUpperCase());
-                            console.log('No change, no build!');
+                            console.log(chalk.blue(`[${item}]`.toUpperCase()));
+                            console.log(chalk.blue('No change, no build!'));
                         }
                     }
                 })
